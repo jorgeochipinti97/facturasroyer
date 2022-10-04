@@ -98,6 +98,8 @@ const Home: NextPage = () => {
                 <TextField label='descripción'
                   sx={{ m: 1 }}
                   onChange={(e) => setDescription(e.target.value)}
+                  multiline
+                  maxRows={4}
 
                 />
               </Box>

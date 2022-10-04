@@ -36,7 +36,7 @@ export const TableGrid: FC<Props> = ({ productos }) => {
                                     >
                                          {capitalize(row.name)}
                                     </TableCell>
-                                    <TableCell align="center" sx={{}}  >{row.description.slice(0, 45)}</TableCell>
+                                    <TableCell align="center" sx={{}}  >{row.description.slice(0, 45)}...</TableCell>
                                     <TableCell align="center" sx={{}}>{row.quantity}</TableCell>
                                     <TableCell align="center" sx={{}}>{format(row.price)}</TableCell>
                                     <TableCell align="center" sx={{}}>{format(0)}</TableCell>
