@@ -9,10 +9,10 @@ import { capitalizarPrimeraLetraPalabras } from '../../utils/capitalize';
 import { jsPDF } from "jspdf";
 
 interface Props {
-  children: _InterfaceInvoice
+  order: _InterfaceInvoice
 }
 
-export const InvoicePage: FC<Props> = ({ children }) => {
+export const InvoicePage: FC<Props> = ({ order }) => {
 
 
 
@@ -28,32 +28,28 @@ export const InvoicePage: FC<Props> = ({ children }) => {
     const link = document.createElement('a');
     if (typeof link.download === 'string') {
       link.href = data;
-      // link.download = `${children.name.trim()
-      //   .replaceAll(' ', '_')
-      //   .replaceAll("'", '')}-RoyerStoreInvoice.jpg`;
+      const doc = new jsPDF('p', 'px', 'a4');
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const pageHeight = doc.internal.pageSize.getHeight();
 
-        const doc = new jsPDF('p', 'px', 'a4');
-        const pageWidth = doc.internal.pageSize.getWidth();
-        const pageHeight = doc.internal.pageSize.getHeight();
-    
-        const widthRatio = pageWidth / canvas.width;
-        const heightRatio = pageHeight / canvas.height;
-        const ratio = widthRatio > heightRatio ? heightRatio : widthRatio;
-    
-        const canvasWidth = canvas.width * ratio;
-        const canvasHeight = canvas.height * ratio;
-    
-        const marginX = (pageWidth - canvasWidth) / 2;
-        const marginY = (pageHeight - canvasHeight) / 2;
-        doc.addImage(data, 'jpg', marginX, marginY, canvasWidth, canvasHeight);
+      const widthRatio = pageWidth / canvas.width;
+      const heightRatio = pageHeight / canvas.height;
+      const ratio = widthRatio > heightRatio ? heightRatio : widthRatio;
 
-        doc.save(`${children.name.trim()
-          .replaceAll(' ', '_')
-          .replaceAll("'", '')}-RoyerStoreInvoice.pdf`);
+      const canvasWidth = canvas.width * ratio;
+      const canvasHeight = canvas.height * ratio;
+
+      const marginX = (pageWidth - canvasWidth) / 2;
+      const marginY = (pageHeight - canvasHeight) / 2;
+      doc.addImage(data, 'jpg', marginX, marginY, canvasWidth, canvasHeight);
+
+      doc.save(`${order.name.trim()
+        .replaceAll(' ', '_')
+        .replaceAll("'", '')}-RoyerStoreInvoice.pdf`);
 
       document.body.appendChild(link);
       link.click();
-       document.body.removeChild(link);
+      document.body.removeChild(link);
     } else {
       window.open(data);
     }
@@ -62,14 +58,14 @@ export const InvoicePage: FC<Props> = ({ children }) => {
 
 
   return (
-    <>
+    
 
 
       <Box display='flex' flexDirection='column'>
-        <Box display='flex' justifyContent='center' sx={{ border: '2px solid black', minHeight: '29.7cm', width: '21cm'}} ref={printRef} flexWrap='wrap'>
+        <Box display='flex' justifyContent='center' sx={{ border: '2px solid black', minHeight: '29.7cm', width: '21cm' }} ref={printRef} flexWrap='wrap'>
           <Box>
             <Box display='flex' flexDirection='column' sx={{ backgroundColor: '#043464' }}>
-              <Box display='flex' justifyContent='center' sx={{position:'relative', left:12}}>
+              <Box display='flex' justifyContent='center' sx={{ position: 'relative', left: 12 }}>
                 <Image src='https://res.cloudinary.com/djk4q3tys/image/upload/v1664297333/rkwkiqfct0mjl4q7vfnv.png' width={500} height={200} />
               </Box>
               <Box display='flex' justifyContent='center'>
@@ -78,7 +74,7 @@ export const InvoicePage: FC<Props> = ({ children }) => {
             </Box>
             <Box >
               <Box>
-                <Typography variant='h5' sx={{ textAlign: 'start', color: 'black', m: 1 }}>Order Nº: {children.nOrder}</Typography>
+                <Typography variant='h5' sx={{ textAlign: 'start', color: 'black', m: 1 }}>Order Nº: {order.nOrder}</Typography>
               </Box>
             </Box>
             <Divider />
@@ -89,7 +85,7 @@ export const InvoicePage: FC<Props> = ({ children }) => {
                     Invoice to:
                   </Typography>
                   <Typography variant='subtitle1' sx={{ fontWeight: 800, ml: 1, color: 'black' }}>
-                    {capitalizarPrimeraLetraPalabras(children.name)}
+                    {capitalizarPrimeraLetraPalabras(order.name)}
                   </Typography>
                 </Box>
                 <Box display='flex' flexDirection='column'>
@@ -97,7 +93,7 @@ export const InvoicePage: FC<Props> = ({ children }) => {
                     Shipping to:
                   </Typography>
                   <Typography variant='subtitle1' sx={{ fontWeight: 800, ml: 1, color: 'black' }}>
-                    {capitalizarPrimeraLetraPalabras(children.address)}
+                    {capitalizarPrimeraLetraPalabras(order.address)}
                   </Typography>
                 </Box>
                 <Box display='flex' flexDirection='column'>
@@ -105,21 +101,22 @@ export const InvoicePage: FC<Props> = ({ children }) => {
                     Date:
                   </Typography>
                   <Typography variant='subtitle1' sx={{ fontWeight: 800, ml: 1, color: 'black' }}>
-                    {`${new Date().toLocaleDateString("en-EN", { year: 'numeric', month: 'long', day: 'numeric' })}`}              </Typography>
+                    {`${new Date().toLocaleDateString("en-EN", { year: 'numeric', month: 'long', day: 'numeric' })}`}
+                  </Typography>
                 </Box>
               </Box>
             </Box>
             <Divider />
-            <TableGrid productos={children.products} />
+            <TableGrid productos={order.products} />
 
 
 
             <Box display='flex' justifyContent='space-between' sx={{ m: 2 }} >
               <Box display='flex' justifyContent='center' sx={{ mt: 2 }} >
-                <Typography variant='h5' sx={{ fontWeight: 800, color: 'black' }}>Payment Method: {capitalize(children.paymentMethod)}</Typography>
+                <Typography variant='h5' sx={{ fontWeight: 800, color: 'black' }}>Payment Method: {capitalize(order.paymentMethod)}</Typography>
               </Box>
               <Box display='flex' justifyContent='center' sx={{ mt: 2 }} >
-                <Typography variant='h3' sx={{ fontWeight: 800, color: '#043464' }}>Total: {format(children.price)}</Typography>
+                <Typography variant='h3' sx={{ fontWeight: 800, color: '#043464' }}>Total: {format(order.price)}</Typography>
               </Box>
             </Box>
           </Box>
@@ -133,7 +130,7 @@ export const InvoicePage: FC<Props> = ({ children }) => {
         </Box>
 
 
-        <Box display='flex' justifyContent='center' sx={{mt:3}}>
+        <Box display='flex' justifyContent='center' sx={{ mt: 3 }}>
           <Box>
             <Button
               variant='contained'
@@ -145,6 +142,6 @@ export const InvoicePage: FC<Props> = ({ children }) => {
         </Box>
       </Box>
 
-    </>
+
   )
 }
