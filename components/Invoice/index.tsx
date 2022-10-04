@@ -116,7 +116,7 @@ export const InvoicePage: FC<Props> = ({ order }) => {
                 <Typography variant='h5' sx={{ fontWeight: 800, color: 'black' }}>Payment Method: {capitalize(order.paymentMethod)}</Typography>
               </Box>
               <Box display='flex' justifyContent='center' sx={{ mt: 2 }} >
-                <Typography variant='h3' sx={{ fontWeight: 800, color: '#043464' }}>Gross total: {format(order.price)} USD</Typography>
+                <Typography variant='h4' sx={{ fontWeight: 800, color: '#043464' }}>Gross total: {format(order.price)} USD</Typography>
               </Box>
             </Box>
           </Box>
