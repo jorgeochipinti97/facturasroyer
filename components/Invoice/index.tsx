@@ -44,7 +44,7 @@ export const InvoicePage: FC<Props> = ({ order }) => {
       doc.addImage(data, 'jpg', marginX, marginY, canvasWidth, canvasHeight);
 
       doc.save(`${order.name.trim()
-        .replaceAll(' ', '_')
+        .replaceAll(' ', '-')
         .replaceAll("'", '')}-RoyerStoreInvoice.pdf`);
 
       document.body.appendChild(link);
@@ -58,89 +58,89 @@ export const InvoicePage: FC<Props> = ({ order }) => {
 
 
   return (
-    
 
 
-      <Box display='flex' flexDirection='column'>
-        <Box display='flex' justifyContent='center' sx={{ minHeight: '29.7cm', width: '21cm' }} ref={printRef} flexWrap='wrap'>
-          <Box>
-            <Box display='flex' flexDirection='column' sx={{ backgroundColor: '#043464' }}>
-              <Box display='flex' justifyContent='center' sx={{ml:5}}>
-                <Image src='https://res.cloudinary.com/djk4q3tys/image/upload/v1664297333/rkwkiqfct0mjl4q7vfnv.png' width={500} height={200} />
-              </Box>
-              <Box display='flex' justifyContent='center'>
-                <Typography variant='h4' textAlign='center' sx={{ color: 'white' }}>✈️ Worldwide free shipping</Typography>
-              </Box>
+
+    <Box display='flex' flexDirection='column'>
+      <Box display='flex' justifyContent='center' sx={{ minHeight: '29.7cm', width: '21cm' }} ref={printRef} flexWrap='wrap'>
+        <Box>
+          <Box display='flex' flexDirection='column' sx={{ backgroundColor: '#043464' }}>
+            <Box display='flex' justifyContent='center' sx={{ ml: 5 }}>
+              <Image src='https://res.cloudinary.com/djk4q3tys/image/upload/v1664297333/rkwkiqfct0mjl4q7vfnv.png' width={500} height={200} />
             </Box>
-            <Box >
-              <Box>
-                <Typography variant='h5' sx={{ textAlign: 'start', color: 'black', m: 1 }}>Order Nº: {order.nOrder}</Typography>
-              </Box>
+            <Box display='flex' justifyContent='center'>
+              <Typography variant='h4' textAlign='center' sx={{ color: 'white' }}>✈️ Worldwide free shipping</Typography>
             </Box>
-            <Divider />
-            <Box sx={{ width: 800, p: 2 }} >
-              <Box display='flex' justifyContent='space-around' sx={{ textAlign: 'justify', mt: 3 }}>
-                <Box display='flex' flexDirection='column'>
-                  <Typography variant='subtitle1' sx={{ fontWeight: 800, color: '#043464' }}>
-                    Invoice to:
-                  </Typography>
-                  <Typography variant='subtitle1' sx={{ fontWeight: 800, ml: 1, color: 'black' }}>
-                    {capitalizarPrimeraLetraPalabras(order.name)}
-                  </Typography>
-                </Box>
-                <Box display='flex' flexDirection='column'>
-                  <Typography variant='subtitle1' sx={{ fontWeight: 800, color: '#043464' }}>
-                    Shipping to:
-                  </Typography>
-                  <Typography variant='subtitle1' sx={{ fontWeight: 800, ml: 1, color: 'black' }}>
-                    {capitalizarPrimeraLetraPalabras(order.address)}
-                  </Typography>
-                </Box>
-                <Box display='flex' flexDirection='column'>
-                  <Typography variant='subtitle1' sx={{ fontWeight: 800, color: '#043464' }}>
-                    Date:
-                  </Typography>
-                  <Typography variant='subtitle1' sx={{ fontWeight: 800, ml: 1, color: 'black' }}>
-                    {`${new Date().toLocaleDateString("en-EN", { year: 'numeric', month: 'long', day: 'numeric' })}`}
-                  </Typography>
-                </Box>
-              </Box>
+          </Box>
+          <Box >
+            <Box>
+              <Typography variant='h5' sx={{ textAlign: 'start', color: 'black', m: 1 }}>Order Nº: {order.nOrder}</Typography>
             </Box>
-            <Divider />
-            <TableGrid productos={order.products} />
-
-
-
-            <Box display='flex' justifyContent='space-between' sx={{ m: 2 }} >
-              <Box display='flex' justifyContent='center' sx={{ mt: 2 }} >
-                <Typography variant='h5' sx={{ fontWeight: 800, color: 'black' }}>Payment Method: {capitalize(order.paymentMethod)}</Typography>
+          </Box>
+          <Divider />
+          <Box sx={{ width: 800, p: 2 }} >
+            <Box display='flex' justifyContent='space-around' sx={{ textAlign: 'justify', mt: 3 }}>
+              <Box display='flex' flexDirection='column'>
+                <Typography variant='subtitle1' sx={{ fontWeight: 800, color: '#043464' }}>
+                  Invoice to:
+                </Typography>
+                <Typography variant='subtitle1' sx={{ fontWeight: 800, ml: 1, color: 'black' }}>
+                  {capitalizarPrimeraLetraPalabras(order.name)}
+                </Typography>
               </Box>
-              <Box display='flex' justifyContent='center' sx={{ mt: 2 }} >
-                <Typography variant='h4' sx={{ fontWeight: 800, color: '#043464' }}>Gross total: {format(order.price)} USD</Typography>
+              <Box display='flex' flexDirection='column'>
+                <Typography variant='subtitle1' sx={{ fontWeight: 800, color: '#043464' }}>
+                  Shipping to:
+                </Typography>
+                <Typography variant='subtitle1' sx={{ fontWeight: 800, ml: 1, color: 'black' }}>
+                  {capitalizarPrimeraLetraPalabras(order.address)}
+                </Typography>
+              </Box>
+              <Box display='flex' flexDirection='column'>
+                <Typography variant='subtitle1' sx={{ fontWeight: 800, color: '#043464' }}>
+                  Date:
+                </Typography>
+                <Typography variant='subtitle1' sx={{ fontWeight: 800, ml: 1, color: 'black' }}>
+                  {`${new Date().toLocaleDateString("en-EN", { year: 'numeric', month: 'long', day: 'numeric' })}`}
+                </Typography>
               </Box>
             </Box>
           </Box>
-          <Box sx={{ m: 1 }} display='flex' flexDirection='column' justifyContent='end' alignSelf='end'>
-            <Box display='flex' justifyContent='center'>
-              <Image src='/qr.png' width={80} height={80} />
+          <Divider />
+          <TableGrid productos={order.products} />
+
+
+
+          <Box display='flex' flexDirection='column' alignItems='end' sx={{ m: 2 }} >
+            <Box display='flex' justifyContent='center' sx={{ mt: 2 }} >
+              <Typography variant='h5' sx={{ textAlign: 'start', fontWeight: 800, color: 'black' }}>Payment Method: {capitalize(order.paymentMethod)}</Typography>
             </Box>
-            <Typography variant='subtitle1' sx={{ fontWeight: 'bold', textAlign: 'center' }}>Royer Store</Typography>
-            <Typography variant='subtitle1' sx={{ fontWeight: 'bold', textAlign: 'center' }}>Buenos Aires, Argentina</Typography>
+            <Box display='flex' justifyContent='center' sx={{ mt: 2 }} >
+              <Typography variant='h4' sx={{ textAlign: 'start', fontWeight: 800, color: '#043464' }}>Gross total: {format(order.price)} USD</Typography>
+            </Box>
           </Box>
         </Box>
-
-
-        <Box display='flex' justifyContent='center' sx={{ mt: 3 }}>
-          <Box>
-            <Button
-              variant='contained'
-              color='success'
-              onClick={handleDownloadImage}>
-              Descargar
-            </Button>
+        <Box sx={{ m: 1 }} display='flex' flexDirection='column' justifyContent='end' alignSelf='end'>
+          <Box display='flex' justifyContent='center'>
+            <Image src='/qr.png' width={80} height={80} />
           </Box>
+          <Typography variant='subtitle1' sx={{ fontWeight: 'bold', textAlign: 'center' }}>Royer Store</Typography>
+          <Typography variant='subtitle1' sx={{ fontWeight: 'bold', textAlign: 'center' }}>Buenos Aires, Argentina</Typography>
         </Box>
       </Box>
+
+
+      <Box display='flex' justifyContent='center' sx={{ mt: 3 }}>
+        <Box>
+          <Button
+            variant='contained'
+            color='success'
+            onClick={handleDownloadImage}>
+            Descargar
+          </Button>
+        </Box>
+      </Box>
+    </Box>
 
 
   )
