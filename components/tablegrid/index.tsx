@@ -23,7 +23,7 @@ export const TableGrid: FC<Props> = ({ productos }) => {
                                 <TableCell align="center" sx={{ backgroundColor: '#043464', color: 'white' , }}>Name</TableCell>
                                 <TableCell align="center" sx={{ backgroundColor: '#043464', color: 'white' , }}>Description</TableCell>
                                 <TableCell align="center" sx={{ backgroundColor: '#043464', color: 'white' ,}}>Quantity</TableCell>
-                                <TableCell align="center" sx={{ backgroundColor: '#043464', color: 'white' ,}}>Net total</TableCell>
+                                <TableCell align="center" sx={{ backgroundColor: '#043464', color: 'white' ,}}>Unit Price</TableCell>
                                 <TableCell align="center" sx={{ backgroundColor: '#043464', color: 'white' ,}}>Shipping</TableCell>
                             </TableRow>
                         </TableHead>
