@@ -62,10 +62,10 @@ export const InvoicePage: FC<Props> = ({ order }) => {
 
 
       <Box display='flex' flexDirection='column'>
-        <Box display='flex' justifyContent='center' sx={{ border: '2px solid black', minHeight: '29.7cm', width: '21cm' }} ref={printRef} flexWrap='wrap'>
+        <Box display='flex' justifyContent='center' sx={{ minHeight: '29.7cm', width: '21cm' }} ref={printRef} flexWrap='wrap'>
           <Box>
             <Box display='flex' flexDirection='column' sx={{ backgroundColor: '#043464' }}>
-              <Box display='flex' justifyContent='center' sx={{ position: 'relative', left: 12 }}>
+              <Box display='flex' justifyContent='center' sx={{ml:5}}>
                 <Image src='https://res.cloudinary.com/djk4q3tys/image/upload/v1664297333/rkwkiqfct0mjl4q7vfnv.png' width={500} height={200} />
               </Box>
               <Box display='flex' justifyContent='center'>
