@@ -15,7 +15,6 @@ const Home: NextPage = () => {
   const [total, setTotal] = useState(0)
   const [products, setProducts] = useState<IProduct[]>([])
   const [nameOfProduct, setNameOfProduct] = useState('')
-  const [description, setDescription] = useState('')
   const [price, setPrice] = useState(0)
   const [quantity, setQuantity] = useState(0)
 
@@ -23,7 +22,6 @@ const Home: NextPage = () => {
   const onCreateProduct = () => {
     const newProduct: IProduct = {
       name: nameOfProduct,
-      description,
       quantity,
       price
     }
@@ -95,12 +93,6 @@ const Home: NextPage = () => {
 
                     sx={{ m: 1 }}
                     onChange={(e) => setNameOfProduct(e.target.value)}
-                  />
-                </Box>
-                <Box>
-                  <TextField label='descripción'
-                    sx={{ m: 1 }}
-                    onChange={(e) => setDescription(e.target.value)}
                   />
                 </Box>
                 <Box>

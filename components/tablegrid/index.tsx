@@ -21,7 +21,6 @@ export const TableGrid: FC<Props> = ({ productos }) => {
                         <TableHead>
                             <TableRow>
                                 <TableCell align="center" sx={{ backgroundColor: '#043464', color: 'white' , }}>Name</TableCell>
-                                <TableCell align="center" sx={{ backgroundColor: '#043464', color: 'white' , }}>Description</TableCell>
                                 <TableCell align="center" sx={{ backgroundColor: '#043464', color: 'white' ,}}>Quantity</TableCell>
                                 <TableCell align="center" sx={{ backgroundColor: '#043464', color: 'white' ,}}>Unit Price</TableCell>
                                 <TableCell align="center" sx={{ backgroundColor: '#043464', color: 'white' ,}}>Shipping</TableCell>
@@ -36,7 +35,6 @@ export const TableGrid: FC<Props> = ({ productos }) => {
                                     >
                                          {capitalize(row.name)}
                                     </TableCell>
-                                    <TableCell align="center" sx={{}}  >{row.description.slice(0, 45)}...</TableCell>
                                     <TableCell align="center" sx={{}}>{row.quantity}</TableCell>
                                     <TableCell align="center" sx={{}}>{format(row.price)}</TableCell>
                                     <TableCell align="center" sx={{}}>{format(0)}</TableCell>

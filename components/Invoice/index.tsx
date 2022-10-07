@@ -69,7 +69,7 @@ export const InvoicePage: FC<Props> = ({ order }) => {
               <Image src='https://res.cloudinary.com/djk4q3tys/image/upload/v1664297333/rkwkiqfct0mjl4q7vfnv.png' width={500} height={200} />
             </Box>
             <Box display='flex' justifyContent='center'>
-              <Typography variant='h4' textAlign='center' sx={{ color: 'white' }}>✈️ Worldwide free shipping</Typography>
+              <Typography variant='h4' textAlign='center' sx={{ color: 'white' }}>Worldwide free shipping</Typography>
             </Box>
           </Box>
           <Box >
