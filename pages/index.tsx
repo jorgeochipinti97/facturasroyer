@@ -17,13 +17,17 @@ const Home: NextPage = () => {
   const [nameOfProduct, setNameOfProduct] = useState('')
   const [price, setPrice] = useState(0)
   const [quantity, setQuantity] = useState(0)
+  const [isPesos, setIsPesos] = useState(false)
 
 
   const onCreateProduct = () => {
+
+
     const newProduct: IProduct = {
       name: nameOfProduct,
       quantity,
-      price
+      price,
+      parcialTotal: quantity * price
     }
     setProducts(products.concat(newProduct))
 
@@ -135,6 +139,14 @@ const Home: NextPage = () => {
           }
         </Box>
         <Divider sx={{ backgroundColor: 'black', mb: 2 }} />
+        <Box display='flex' justifyContent='center'>
+          <Button
+            variant='contained'
+            onClick={() => setIsPesos(!isPesos)}
+            sx={{ m: 2 }}
+          >Cambiar divisa</Button>
+        </Box>
+        <Divider sx={{ backgroundColor: 'black', mb: 2 }} />
         <Box display='flex' justifyContent='center' sx={{ m: 3 }}>
 
           <InvoicePage order={{
@@ -144,6 +156,7 @@ const Home: NextPage = () => {
             paymentMethod,
             products,
             address,
+            isPesos
 
           }} />
         </Box>

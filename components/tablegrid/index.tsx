@@ -17,31 +17,31 @@ export const TableGrid: FC<Props> = ({ productos }) => {
     return (
         <>
             <Box display='flex' justifyContent='center'>
-                    <Table aria-label="simple table" sx={{ width: '90%', m: 2 }}>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell align="center" sx={{ backgroundColor: '#043464', color: 'white' , }}>Name</TableCell>
-                                <TableCell align="center" sx={{ backgroundColor: '#043464', color: 'white' ,}}>Quantity</TableCell>
-                                <TableCell align="center" sx={{ backgroundColor: '#043464', color: 'white' ,}}>Unit Price</TableCell>
-                                <TableCell align="center" sx={{ backgroundColor: '#043464', color: 'white' ,}}>Shipping</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {productos.map((row) => (
-                                <TableRow
-                                    key={row.name}
+                <Table aria-label="simple table" sx={{ width: '90%', m: 2 }}>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell align="center" sx={{ backgroundColor: '#043464', color: 'white' }}>Name</TableCell>
+                            <TableCell align="center" sx={{ backgroundColor: '#043464', color: 'white' }}>Quantity</TableCell>
+                            <TableCell align="center" sx={{ backgroundColor: '#043464', color: 'white' }}>Unit Price</TableCell>
+                            <TableCell align="center" sx={{ backgroundColor: '#043464', color: 'white' }}>Total</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {productos.map((row) => (
+                            <TableRow
+                                key={row.name}
+                            >
+                                <TableCell component="th" scope="row" sx={{ fontWeight: 'bold', }}
                                 >
-                                    <TableCell component="th" scope="row" sx={{ fontWeight: 'bold',  }}
-                                    >
-                                         {capitalize(row.name)}
-                                    </TableCell>
-                                    <TableCell align="center" sx={{}}>{row.quantity}</TableCell>
-                                    <TableCell align="center" sx={{}}>{format(row.price)}</TableCell>
-                                    <TableCell align="center" sx={{}}>{format(0)}</TableCell>
-                                </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
+                                    {capitalize(row.name)}
+                                </TableCell>
+                                <TableCell align="center" sx={{}}>{row.quantity}</TableCell>
+                                <TableCell align="center" sx={{}}>{format(row.price)}</TableCell>
+                                <TableCell align="center" sx={{}}>{format(row.parcialTotal)}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
             </Box>
 
         </>

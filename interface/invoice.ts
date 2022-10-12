@@ -5,6 +5,7 @@ export interface _InterfaceInvoice {
     products: IProduct[]
     address: string
     paymentMethod: string
+    isPesos:boolean
 }
 
 
@@ -12,4 +13,5 @@ export interface IProduct {
     name: string
     price: number
     quantity:number
+    parcialTotal:number
 }
