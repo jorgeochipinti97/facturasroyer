@@ -43,9 +43,7 @@ export const InvoicePage: FC<Props> = ({ order }) => {
       const marginY = (pageHeight - canvasHeight) / 2;
       doc.addImage(data, 'jpg', marginX, marginY, canvasWidth, canvasHeight);
 
-      doc.save(`${order.name.trim()
-        .replaceAll(' ', '-')
-        .replaceAll("'", '')}-RoyerStoreInvoice.pdf`);
+      doc.save(`00${order.nOrder}-RoyerStoreInvoice.pdf`);
 
       document.body.appendChild(link);
       link.click();
